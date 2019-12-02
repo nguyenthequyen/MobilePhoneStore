@@ -5,16 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MobilePhoneStore.Services;
 using MobilePhoneStore.Web.Models;
 
 namespace MobilePhoneStore.Web.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly IProductService _productService;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            IProductService productService,
+            ILogger<HomeController> logger)
         {
+            _productService = productService;
             _logger = logger;
         }
 

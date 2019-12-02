@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20191124135950_InitMobilePhoneStore.cs" />
-    <Compile Remove="Data\Migrations\20191124135950_InitMobilePhoneStore.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191202142049_InitProject.cs" />
+    <Compile Remove="Data\Migrations\20191202142049_InitProject.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

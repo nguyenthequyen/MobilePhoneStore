@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MobilePhoneStore.Models;
 
-namespace MobilePhoneStore.Repository.Data
+namespace MobilePhoneStore.Repository
 {
     public class ApplicationDbContext : IdentityDbContext<User, Role, string,
         UserClaim, UserRole, UserLogin,
@@ -64,10 +64,14 @@ namespace MobilePhoneStore.Repository.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Provider> Providers { get; set; }
+        public DbSet<Firm> Firms { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Rate> Rates { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<ColorProduct> ColorProducts { get; set; }
+        public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<ProductDetail> ProductDetails { get; set; }
     }
 }
