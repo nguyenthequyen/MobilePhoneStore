@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MobilePhoneStore.Models;
+using MobilePhoneStore.Models.Constants;
 using MobilePhoneStore.Repository;
 using MobilePhoneStore.Web.ViewModels;
 
@@ -35,15 +36,14 @@ namespace MobilePhoneStore.Web.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Regex regexEmail = new Regex(Constant.EmailRegex);
                 Match matchEmail = regexEmail.Match(model.Username);
-                Regex regexPhoneNumber = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Regex regexPhoneNumber = new Regex(Constant.PhoneNumberRegex);
                 Match matchPhoneNumber = regexPhoneNumber.Match(model.Username);
                 User user = null;
                 if (matchEmail.Success)
@@ -85,6 +85,7 @@ namespace MobilePhoneStore.Web.Controllers
             }
             return View(model);
         }
+
         [HttpGet]
         public async Task<IActionResult> Register()
         {
@@ -99,9 +100,9 @@ namespace MobilePhoneStore.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Regex regexEmail = new Regex(Constant.EmailRegex);
                 Match matchEmail = regexEmail.Match(model.Username);
-                Regex regexPhoneNumber = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Regex regexPhoneNumber = new Regex(Constant.PhoneNumberRegex);
                 Match matchPhoneNumber = regexPhoneNumber.Match(model.Username);
                 User user = null;
                 if (matchEmail.Success)
@@ -151,6 +152,53 @@ namespace MobilePhoneStore.Web.Controllers
                             return View(model);
                         }
                     }
+                }
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Regex regexEmail = new Regex(Constant.EmailRegex);
+                Match matchEmail = regexEmail.Match(model.Username);
+                Regex regexPhoneNumber = new Regex(Constant.PhoneNumberRegex);
+                Match matchPhoneNumber = regexPhoneNumber.Match(model.Username);
+                User user = null;
+                if (matchEmail.Success)
+                {
+                    user = await _userManager.FindByEmailAsync(model.Username);
+                }
+                else if (matchPhoneNumber.Success)
+                {
+                    user = _dbContext.Users.FirstOrDefault(x => x.PhoneNumber == model.Username);
+                }
+                else
+                {
+                    return View(model);
+                }
+                if (user != null)
+                {
+                    if (matchEmail.Success)
+                    {
+
+                    }
+                    else if (matchPhoneNumber.Success)
+                    {
+
+                    }
+                }
+                else
+                {
+
                 }
             }
             return View(model);

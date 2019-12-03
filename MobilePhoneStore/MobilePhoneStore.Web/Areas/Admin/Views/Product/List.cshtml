@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Form Basic</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-0 justify-content-end">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary btn-sm float-right">Thêm sản phẩm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <form class="form-horizontal">
+                        <div class="card-body pt-0">
+                            <h4 class="card-title">Tìm kiếm sản phẩm</h4>
+                            <div class="form-group col">
+                                <input type="text" class="form-control" id="fname" placeholder="Nhập tên sản phẩm, danh mục hoặc màu sắc, ...">
+                            </div>
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body justify-content-end float-right">
+                                <button type="button" class="btn btn-primary">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">Danh sách sản phẩm</h5>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Hình ảnh</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">SKU</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Sửa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="~/img/about/About_icon1.png" /></td>
+                                <td>Otto</td>
+                                <td>mdo</td>
+                                <th scope="col">Price</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Sửa</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><img src="~/img/about/About_icon1.png" /></td>
+                                <td>Thornton</td>
+                                <td>fat</td>
+                                <th scope="col">Price</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Sửa</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td><img src="~/img/about/About_icon1.png" /></td>
+                                <td>the Bird</td>
+                                <td>twitter</td>
+                                <th scope="col">Price</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Danh mục</th>
+                                <th scope="col">Sửa</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>

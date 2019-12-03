@@ -4,54 +4,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using MobilePhoneStore.Web.ViewModels;
+@model LoginViewModel
 <div class="customer_login mt-60">
     <div class="container">
-        <div class="row">
-            <!--login area start-->
-            <div class="col-lg-6 col-md-6">
-                <div class="account_form">
-                    <h2>login</h2>
-                    <form action="#">
-                        <p>
-                            <label>Username or email <span>*</span></label>
-                            <input type="text">
-                        </p>
-                        <p>
-                            <label>Passwords <span>*</span></label>
-                            <input type="password">
-                        </p>
-                        <div class="login_submit">
-                            <a href="#">Lost your password?</a>
-                            <label for="remember">
-                                <input id="remember" type="checkbox">
-                                Remember me
-                            </label>
-                            <button type="submit">login</button>
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-7">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <div class="account_form register">
+                            <h2 class="text-center">Đăng nhập</h2>
+                            <form method="post" asp-action="Login" asp-controller="Account">
+                                <p>
+                                    <label asp-for="Username"></label>
+                                    <input type="text" asp-for="Username">
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </p>
+                                <p>
+                                    <label asp-for="Password"></label>
+                                    <input type="text" asp-for="Password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </p>
+                                <div class="login_submit">
+                                    <a asp-action="ForgotPassword" asp-controller="Account" class="text-primary">Quên mật khẩu?</a>
+                                    <label asp-for="RememberLogin">
+                                        <input asp-for="RememberLogin" type="checkbox">
+                                        Ghi nhớ đăng nhập
+                                    </label>
+                                    <button type="submit">Đăng nhập</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-            <!--login area start-->
-            <!--register area start-->
-            <div class="col-lg-6 col-md-6">
-                <div class="account_form register">
-                    <h2>Register</h2>
-                    <form action="#">
-                        <p>
-                            <label>Email address  <span>*</span></label>
-                            <input type="text">
-                        </p>
-                        <p>
-                            <label>Passwords <span>*</span></label>
-                            <input type="password">
-                        </p>
-                        <div class="login_submit">
-                            <button type="submit">Register</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!--register area end-->
         </div>
     </div>
 </div>
