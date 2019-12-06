@@ -9,6 +9,6 @@ namespace MobilePhoneStore.Models
     public class Category : BaseEntity
     {
         public string Name { get; set; }
-        public Guid ParentId { get; set; }
+        //public Guid ParentId { get; set; }
     }
 }

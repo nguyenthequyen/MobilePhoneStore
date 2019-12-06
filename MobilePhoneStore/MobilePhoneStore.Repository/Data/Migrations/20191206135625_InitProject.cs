@@ -59,8 +59,7 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     ModifyDate = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    ParentId = table.Column<Guid>(nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -416,56 +415,6 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductDetails",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    ModifyDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    CameraFront = table.Column<float>(nullable: false),
-                    CameraBack = table.Column<float>(nullable: false),
-                    LightFlash = table.Column<bool>(nullable: false),
-                    VideoCall = table.Column<string>(nullable: true),
-                    Film = table.Column<string>(nullable: true),
-                    Ram = table.Column<int>(nullable: false),
-                    Rom = table.Column<int>(nullable: false),
-                    Weigh = table.Column<float>(nullable: false),
-                    Size = table.Column<string>(nullable: true),
-                    ChipName = table.Column<string>(nullable: true),
-                    ChipSpeed = table.Column<float>(nullable: false),
-                    ChipCoreType = table.Column<string>(nullable: true),
-                    GPU = table.Column<string>(nullable: true),
-                    BatteryCapacity = table.Column<int>(nullable: false),
-                    TypePIN = table.Column<string>(nullable: true),
-                    DataConnect = table.Column<string>(nullable: true),
-                    Support4G = table.Column<bool>(nullable: false),
-                    TypeSIM = table.Column<string>(nullable: true),
-                    NumberSIM = table.Column<int>(nullable: false),
-                    Wifi = table.Column<string>(nullable: true),
-                    GPS = table.Column<string>(nullable: true),
-                    Bluetooth = table.Column<string>(nullable: true),
-                    ChargingPort = table.Column<string>(nullable: true),
-                    HeadphoneJack = table.Column<string>(nullable: true),
-                    WatchMovie = table.Column<string>(nullable: true),
-                    ListenMusic = table.Column<string>(nullable: true),
-                    SoundRecording = table.Column<bool>(nullable: false),
-                    FMRadio = table.Column<bool>(nullable: false),
-                    ProductId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductDetails_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Rates",
                 columns: table => new
                 {
@@ -575,11 +524,6 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductDetails_ProductId",
-                table: "ProductDetails",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -633,9 +577,6 @@ namespace MobilePhoneStore.Repository.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderDetails");
-
-            migrationBuilder.DropTable(
-                name: "ProductDetails");
 
             migrationBuilder.DropTable(
                 name: "Rates");

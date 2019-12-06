@@ -72,6 +72,5 @@ namespace MobilePhoneStore.Repository
         public DbSet<Image> Images { get; set; }
         public DbSet<ColorProduct> ColorProducts { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
-        public DbSet<ProductDetail> ProductDetails { get; set; }
     }
 }

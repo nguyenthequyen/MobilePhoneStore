@@ -28,16 +28,19 @@ namespace MobilePhoneStore.Web.Helpers
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IColorRepository, ColorRepository>();
             services.AddTransient<IColorProductRepository, ColorProductRepository>();
-            services.AddTransient<IProductDetailRepository, ProductDetailRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
+            services.AddTransient<IFirmRepository, FirmRepository>();
         }
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IColorService, ColorService>();
             services.AddTransient<IColorProductService, ColorProductService>();
-            services.AddTransient<IProductDetailService, ProductDetailService>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IStorageService, StorageService>();
+            services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IFirmService, FirmService>();
         }
     }
 }

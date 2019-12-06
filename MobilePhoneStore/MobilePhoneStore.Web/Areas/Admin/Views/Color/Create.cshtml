@@ -3,6 +3,28 @@
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Create</h1>
-
+@using MobilePhoneStore.Web
+@using MobilePhoneStore.Web.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MobilePhoneStore.Models.ViewModels;
+@model ColorViewModel
+<div class="page-wrapper">
+    <form class="form-horizontal" method="post" action="/Admin/Category/Create">
+        <div class="card-body">
+            <h4 class="card-title">Thêm sản phẩm</h4>
+            <div class="form-group row">
+                <label asp-for="Name" class="col-sm-3 text-right control-label col-form-label"></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" asp-for="Name">
+                </div>
+            </div>
+        </div>
+        <div class="border-top">
+            <div class="card-body">
+                <button type="submit" class="btn btn-primary">Lưu lại</button>
+            </div>
+        </div>
+    </form>
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>

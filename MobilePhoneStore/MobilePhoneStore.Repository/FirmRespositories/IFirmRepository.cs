@@ -5,7 +5,8 @@ using System.Text;
 
 namespace MobilePhoneStore.Repository
 {
-    public interface IProductDetailRepository : IBaseRepository<ProductDetail>
+    public interface IFirmRepository : IBaseRepository<Firm>
     {
+
     }
 }

@@ -13,15 +13,16 @@ using MobilePhoneStore.Repository;
 namespace MobilePhoneStore.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ColorController : BaseAreaController
+    public class CategoryController : BaseAreaController
     {
-        private readonly IColorRepository _colorRepository;
-        public ColorController(
-            IColorRepository colorRepository,
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryController(
+            ICategoryRepository categoryRepository,
             ApplicationDbContext dbContext,
             IUnitOfWork unitOfWork,
-            ILogger<ColorController> logger) : base(dbContext, unitOfWork, logger)
+            ILogger<CategoryController> logger) : base(dbContext, unitOfWork, logger)
         {
+            _categoryRepository = categoryRepository;
         }
 
         // GET: /<controller>/
@@ -34,16 +35,17 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> Create(ColorViewModel model)
+        public async Task<IActionResult> Create(CategoryViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var color = new Color
+                var category = new Category
                 {
                     Name = model.Name
                 };
-                _colorRepository.Insert(color);
+                _categoryRepository.Insert(category);
                 _unitOfWork.Commit();
             }
             return View(model);

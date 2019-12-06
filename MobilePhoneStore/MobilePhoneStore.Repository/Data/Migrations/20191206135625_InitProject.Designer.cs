@@ -10,7 +10,7 @@ using MobilePhoneStore.Repository;
 namespace MobilePhoneStore.Repository.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191202142312_InitProject")]
+    [Migration("20191206135625_InitProject")]
     partial class InitProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,9 +38,6 @@ namespace MobilePhoneStore.Repository.Data.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ParentId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -330,118 +327,6 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     b.HasIndex("FirmId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("MobilePhoneStore.Models.ProductDetail", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("BatteryCapacity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Bluetooth")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("CameraBack")
-                        .HasColumnType("real");
-
-                    b.Property<float>("CameraFront")
-                        .HasColumnType("real");
-
-                    b.Property<string>("ChargingPort")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ChipCoreType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ChipName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("ChipSpeed")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DataConnect")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("FMRadio")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Film")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GPS")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GPU")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HeadphoneJack")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LightFlash")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ListenMusic")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifyDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("NumberSIM")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Ram")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rom")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("SoundRecording")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Support4G")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("TypePIN")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TypeSIM")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VideoCall")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WatchMovie")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Weigh")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Wifi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductDetails");
                 });
 
             modelBuilder.Entity("MobilePhoneStore.Models.Rate", b =>
@@ -818,13 +703,6 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     b.HasOne("MobilePhoneStore.Models.Firm", "Firm")
                         .WithMany()
                         .HasForeignKey("FirmId");
-                });
-
-            modelBuilder.Entity("MobilePhoneStore.Models.ProductDetail", b =>
-                {
-                    b.HasOne("MobilePhoneStore.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("MobilePhoneStore.Models.Rate", b =>

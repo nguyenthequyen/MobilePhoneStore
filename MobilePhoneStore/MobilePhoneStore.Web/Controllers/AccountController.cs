@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using MobilePhoneStore.Models;
 using MobilePhoneStore.Models.Constants;
 using MobilePhoneStore.Repository;
-using MobilePhoneStore.Web.ViewModels;
+using MobilePhoneStore.Models.ViewModels;
 
 namespace MobilePhoneStore.Web.Controllers
 {
