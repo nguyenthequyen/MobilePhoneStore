@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MobilePhoneStore.Services
 {
-    public class FirmService : BaseService<Firm>, IFirmService
+    public class FirmService : BaseService<Trademark>, IFirmService
     {
         public FirmService(IUnitOfWork unitOfWork, IFirmRepository reponsitory) : base(unitOfWork, reponsitory)
         {

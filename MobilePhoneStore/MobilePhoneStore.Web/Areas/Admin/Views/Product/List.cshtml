@@ -3,7 +3,12 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@using MobilePhoneStore.Models
+@{
+    var product = ViewData["Product"] as List<Product>;
+}
 <div class="page-wrapper">
+    <img src="/product/img_product/9217c682-4caf-41d3-9081-6f2a3b662c7e.jpg" />
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
@@ -73,23 +78,32 @@
                                 <th scope="col">Hình ảnh</th>
                                 <th scope="col">Tên sản phẩm</th>
                                 <th scope="col">SKU</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">Giá cũ</th>
+                                <th scope="col">Giá mới</th>
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Danh mục</th>
                                 <th scope="col">Sửa</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><img src="~/img/about/About_icon1.png" /></td>
-                                <td>Otto</td>
-                                <td>mdo</td>
-                                <th scope="col">Price</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Danh mục</th>
-                                <th scope="col">Sửa</th>
-                            </tr>
+                            @{
+                                int i = 1;
+                                foreach (var item in product)
+                                {
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td><img src="@item.ImageThumbnail" /></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.SKU</td>
+                                        <th scope="col">@item.OldPrice</th>
+                                        <th scope="col">@item.Price</th>
+                                        <th scope="col">@item.Quantity</th>
+                                        <th scope="col">@item.Model</th>
+                                        <th scope="col">Sửa</th>
+                                    </tr>
+                                    i++;
+                                }
+                            }
                             <tr>
                                 <th scope="row">2</th>
                                 <td><img src="~/img/about/About_icon1.png" /></td>
@@ -139,3 +153,4 @@
     <!-- End footer -->
     <!-- ============================================================== -->
 </div>
+@section scripts{}

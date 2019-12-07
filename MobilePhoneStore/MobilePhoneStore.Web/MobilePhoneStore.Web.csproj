@@ -24,4 +24,11 @@
     <ProjectReference Include="..\MobilePhoneStore.Services\MobilePhoneStore.Services.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\product\img_product\" />
+    <Folder Include="wwwroot\product\img_description\" />
+    <Folder Include="wwwroot\product\product_thumbnail\" />
+  </ItemGroup>
+
 </Project>

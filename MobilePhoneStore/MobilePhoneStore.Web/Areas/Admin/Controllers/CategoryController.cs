@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using MobilePhoneStore.Models;
 using MobilePhoneStore.Models.ViewModels;
 using MobilePhoneStore.Repository;
+using MobilePhoneStore.Services;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,14 +16,14 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class CategoryController : BaseAreaController
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryService _categoryService;
         public CategoryController(
-            ICategoryRepository categoryRepository,
+            ICategoryService categoryService,
             ApplicationDbContext dbContext,
             IUnitOfWork unitOfWork,
             ILogger<CategoryController> logger) : base(dbContext, unitOfWork, logger)
         {
-            _categoryRepository = categoryRepository;
+            _categoryService = categoryService;
         }
 
         // GET: /<controller>/
@@ -39,14 +40,22 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CategoryViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var category = new Category
+                if (ModelState.IsValid)
                 {
-                    Name = model.Name
-                };
-                _categoryRepository.Insert(category);
-                _unitOfWork.Commit();
+                    var category = new Category
+                    {
+                        Name = model.Name
+                    };
+                    _categoryService.Insert(category);
+                    _unitOfWork.Commit();
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Lỗi tạo danh mục: " + ex);
             }
             return View(model);
         }

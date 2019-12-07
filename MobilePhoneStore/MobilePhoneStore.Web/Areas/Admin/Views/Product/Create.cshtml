@@ -3,10 +3,14 @@
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-@using MobilePhoneStore.Web
-@using MobilePhoneStore.Web.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using MobilePhoneStore.Models.ViewModels;
+@using MobilePhoneStore.Models;
+@{
+    var color = ViewData["Color"] as IEnumerable<Color>;
+    var trademark = ViewData["TrademarkId"] as IEnumerable<Trademark>;
+    var category = ViewData["Category"] as IEnumerable<Category>;
+}
 @model ProductViewModel
 <div class="page-wrapper">
     <form class="form-horizontal" method="post" action="/Admin/Product/Create" enctype="multipart/form-data">
@@ -25,15 +29,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="ShortDescription" class="col-sm-3 text-right control-label col-form-label"></label>
+                <label asp-for="Model" class="col-sm-3 text-right control-label col-form-label"></label>
                 <div class="col-sm-9">
-                    <input type="password" class="form-control" asp-for="ShortDescription">
+                    <input type="text" class="form-control" asp-for="Model">
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="Description" class="col-sm-3 text-right control-label col-form-label"></label>
+                <label asp-for="ShortDescription" class="col-sm-3 text-right control-label col-form-label"></label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" asp-for="Description">
+                    <input type="text" class="form-control" asp-for="ShortDescription">
                 </div>
             </div>
             <div class="form-group row">
@@ -55,9 +59,47 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label">Màu sắc</label>
+                <div class="col-sm-9">
+                    @Html.DropDownList("ColorId", new SelectList(color, "Id", "Name"), htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label">Hãng</label>
+                <div class="col-sm-9">
+                    @Html.DropDownList("TrademarkId", new SelectList(trademark, "Id", "Name"), htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label">Danh mục</label>
+                <div class="col-sm-9">
+                    @Html.DropDownList("CategoryId", new SelectList(category, "Id", "Name"), htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ImageThumbnail" class="col-sm-3 text-right control-label col-form-label"></label>
+                <div class="col-sm-9">
+                    <input type="file" class="form-control" asp-for="ImageThumbnail" multiple>
+                </div>
+            </div>
+            <div class="form-group row">
                 <label asp-for="ProductImages" class="col-sm-3 text-right control-label col-form-label"></label>
                 <div class="col-sm-9">
-                    <input type="file" class="form-control" asp-for="ProductImages">
+                    <input type="file" class="form-control" asp-for="ProductImages" multiple>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Description" class="col-sm-3 text-right control-label col-form-label"></label>
+                <div class="col-sm-9">
+                    <textarea asp-for="Description"></textarea>
+                    <input name="image" type="file" id="upload" hidden onchange="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Specification" class="col-sm-3 text-right control-label col-form-label"></label>
+                <div class="col-sm-9">
+                    <textarea asp-for="Specification"></textarea>
+                    <input name="image" type="file" id="upload" hidden onchange="">
                 </div>
             </div>
         </div>
@@ -70,3 +112,82 @@
     <!-- End footer -->
     <!-- ============================================================== -->
 </div>
+@section scripts{
+    <script>
+        tinymce.init({
+            selector: "#Description",
+            theme: "modern",
+            paste_data_images: true,
+            language: 'vi_VN',
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true,
+            file_picker_callback: function (callback, value, meta) {
+                if (meta.filetype == 'image') {
+                    $('#upload').trigger('click');
+                    $('#upload').on('change', function () {
+                        var file = this.files[0];
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            callback(e.target.result, {
+                                alt: file.name
+                            });
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                }
+            },
+            templates: [{
+                title: 'Test template 1',
+                content: 'Test 1'
+            }, {
+                title: 'Test template 2',
+                content: 'Test 2'
+            }]
+        });
+
+        tinymce.init({
+            selector: "#Specification",
+            theme: "modern",
+            paste_data_images: true,
+            language: 'vi_VN',
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true,
+            file_picker_callback: function (callback, value, meta) {
+                if (meta.filetype == 'image') {
+                    $('#upload').trigger('click');
+                    $('#upload').on('change', function () {
+                        var file = this.files[0];
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            callback(e.target.result, {
+                                alt: file.name
+                            });
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                }
+            },
+            templates: [{
+                title: 'Test template 1',
+                content: 'Test 1'
+            }, {
+                title: 'Test template 2',
+                content: 'Test 2'
+            }]
+        });
+    </script>
+}

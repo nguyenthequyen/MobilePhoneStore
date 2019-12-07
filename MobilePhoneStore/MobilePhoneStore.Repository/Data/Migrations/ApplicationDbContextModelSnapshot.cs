@@ -143,32 +143,6 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("MobilePhoneStore.Models.Firm", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifyDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Providers");
-                });
-
             modelBuilder.Entity("MobilePhoneStore.Models.Image", b =>
                 {
                     b.Property<string>("Id")
@@ -297,8 +271,8 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirmId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("ImageThumbnail")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
@@ -309,20 +283,35 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal?>("OldPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<string>("SKU")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Shortescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specification")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("Trademark")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("TrademarkId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("FirmId");
+                    b.HasIndex("TrademarkId");
 
                     b.ToTable("Products");
                 });
@@ -424,6 +413,32 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("MobilePhoneStore.Models.Trademark", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifyDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Firms");
                 });
 
             modelBuilder.Entity("MobilePhoneStore.Models.User", b =>
@@ -698,9 +713,9 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("MobilePhoneStore.Models.Firm", "Firm")
+                    b.HasOne("MobilePhoneStore.Models.Trademark", "Trademark")
                         .WithMany()
-                        .HasForeignKey("FirmId");
+                        .HasForeignKey("TrademarkId");
                 });
 
             modelBuilder.Entity("MobilePhoneStore.Models.Rate", b =>

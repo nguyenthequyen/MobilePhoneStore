@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MobilePhoneStore.Services
 {
-    public interface IFirmService : IBaseService<Firm>
+    public interface IFirmService : IBaseService<Trademark>
     {
     }
 }

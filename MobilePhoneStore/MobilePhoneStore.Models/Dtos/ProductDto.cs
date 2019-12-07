@@ -9,11 +9,6 @@ namespace MobilePhoneStore.Models
     {
         [Required]
         public string Name { get; set; }
-        /// <summary>
-        /// Thương hiệu
-        /// </summary>
-        [Required]
-        public string Trademark { get; set; }
         [Required]
         public string Model { get; set; }
         [Required]
@@ -21,7 +16,7 @@ namespace MobilePhoneStore.Models
         [Required]
         public string CategoryId { get; set; }
         [Required]
-        public string FirmId { get; set; }
+        public string TrademarkId { get; set; }
         public string ColorId { get; set; }
     }
 }

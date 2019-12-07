@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var host = Context.Request.Host.ToString();
+}
+<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
@@ -325,7 +328,8 @@
     <script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
-
+    <script src="//@host/lib/tinymce/tinymce.min.js"></script> @*with enabled CDN tinymce is not able to find some files*@
+    @RenderSection("scripts", true)
 </body>
 
 </html>

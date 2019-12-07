@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MobilePhoneStore.Repository
 {
-    public interface IFirmRepository : IBaseRepository<Firm>
+    public interface IFirmRepository : IBaseRepository<Trademark>
     {
 
     }

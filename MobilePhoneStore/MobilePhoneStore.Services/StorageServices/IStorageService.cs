@@ -8,10 +8,10 @@ namespace MobilePhoneStore.Services
 {
     public interface IStorageService
     {
-        string GetMediaUrl(string fileName);
+        string GetMediaUrl(string fileName, string mediaFolder);
 
-        Task SaveMediaAsync(Stream mediaBinaryStream, string fileName, string mimeType = null);
+        Task SaveMediaAsync(Stream mediaBinaryStream, string fileName, string mediaFolder, string mimeType = null);
 
-        Task DeleteMediaAsync(string fileName);
+        Task DeleteMediaAsync(string fileName, string mediaFolder);
     }
 }

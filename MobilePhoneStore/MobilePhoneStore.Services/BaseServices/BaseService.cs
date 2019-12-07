@@ -21,7 +21,6 @@ namespace MobilePhoneStore.Services
             //entity.Id = new Guid().ToString();
             entity.CreatedDate = DateTime.Now;
             entity.ModifyDate = DateTime.Now;
-            entity.Description = "Thêm sản phẩm";
             entity.Status = 1;
             _reponsitory.Insert(entity);
         }

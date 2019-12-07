@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using MobilePhoneStore.Models;
 using MobilePhoneStore.Models.ViewModels;
 using MobilePhoneStore.Repository;
+using MobilePhoneStore.Services;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,13 +16,14 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class ColorController : BaseAreaController
     {
-        private readonly IColorRepository _colorRepository;
+        private readonly IColorService _colorService;
         public ColorController(
-            IColorRepository colorRepository,
+            IColorService colorService,
             ApplicationDbContext dbContext,
             IUnitOfWork unitOfWork,
             ILogger<ColorController> logger) : base(dbContext, unitOfWork, logger)
         {
+            _colorService = colorService;
         }
 
         // GET: /<controller>/
@@ -37,14 +39,22 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ColorViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var color = new Color
+                if (ModelState.IsValid)
                 {
-                    Name = model.Name
-                };
-                _colorRepository.Insert(color);
-                _unitOfWork.Commit();
+                    var color = new Color
+                    {
+                        Name = model.Name
+                    };
+                    _colorService.Insert(color);
+                    _unitOfWork.Commit();
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Lỗi thêm màu sắc: " + ex);
             }
             return View(model);
         }

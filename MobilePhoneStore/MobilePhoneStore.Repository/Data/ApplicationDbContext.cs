@@ -61,16 +61,16 @@ namespace MobilePhoneStore.Repository
                     .IsRequired();
             });
         }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Firm> Firms { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Rate> Rates { get; set; }
-        public DbSet<Comment> Comments { get; set; }
         public DbSet<Color> Colors { get; set; }
-        public DbSet<Image> Images { get; set; }
         public DbSet<ColorProduct> ColorProducts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Trademark> Firms { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Rate> Rates { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
     }
 }

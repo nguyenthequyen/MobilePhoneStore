@@ -41,9 +41,9 @@ namespace MobilePhoneStore.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Regex regexEmail = new Regex(Constant.EmailRegex);
+                Regex regexEmail = new Regex(Constant.EMAILREGEX);
                 Match matchEmail = regexEmail.Match(model.Username);
-                Regex regexPhoneNumber = new Regex(Constant.PhoneNumberRegex);
+                Regex regexPhoneNumber = new Regex(Constant.PHONENUMBERREGEX);
                 Match matchPhoneNumber = regexPhoneNumber.Match(model.Username);
                 User user = null;
                 if (matchEmail.Success)
@@ -100,9 +100,9 @@ namespace MobilePhoneStore.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Regex regexEmail = new Regex(Constant.EmailRegex);
+                Regex regexEmail = new Regex(Constant.EMAILREGEX);
                 Match matchEmail = regexEmail.Match(model.Username);
-                Regex regexPhoneNumber = new Regex(Constant.PhoneNumberRegex);
+                Regex regexPhoneNumber = new Regex(Constant.PHONENUMBERREGEX);
                 Match matchPhoneNumber = regexPhoneNumber.Match(model.Username);
                 User user = null;
                 if (matchEmail.Success)
@@ -168,9 +168,9 @@ namespace MobilePhoneStore.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Regex regexEmail = new Regex(Constant.EmailRegex);
+                Regex regexEmail = new Regex(Constant.EMAILREGEX);
                 Match matchEmail = regexEmail.Match(model.Username);
-                Regex regexPhoneNumber = new Regex(Constant.PhoneNumberRegex);
+                Regex regexPhoneNumber = new Regex(Constant.PHONENUMBERREGEX);
                 Match matchPhoneNumber = regexPhoneNumber.Match(model.Username);
                 User user = null;
                 if (matchEmail.Success)
