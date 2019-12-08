@@ -1,4 +1,5 @@
-﻿using MobilePhoneStore.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MobilePhoneStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace MobilePhoneStore.Repository
 
         public void Update(TEntity entity)
         {
-            _dbContext.Set<TEntity>().Update(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
         public IEnumerable<TEntity> ListEntityById(string id)

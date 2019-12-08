@@ -97,11 +97,92 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
                         TrademarkId = model.TrademarkId,
                         SKU = model.SKU,
                         Specification = model.Specification,
-                        ImageThumbnail = thumbnailUrl
+                        ImageThumbnail = thumbnailUrl,
+                        OldPrice = model.OldPrice,
+                        Quantity = model.Quantity,
+                        Price = model.Price,
+                        Gtin = model.Gtin
                     };
                     _productService.Insert(product);
                     await SaveProductMedias(model, product, Constant.IMGPRODUCTROOT);
                     _colorProductService.Insert(new ColorProduct { ColorId = model.ColorId, ProductId = product.Id });
+                    _unitOfWork.Commit();
+                    return View();
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Lỗi thêm sản phẩm: " + ex);
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+            var category = _categoryService.ListAll();
+            var color = _colorService.ListAll();
+            var firm = _firmService.ListAll();
+            ViewData["Color"] = color;
+            ViewData["TrademarkId"] = firm;
+            ViewData["Category"] = category;
+            var product = await _productService.FindFirstOrDefault(id);
+            var productViewModel = new ProductViewModel
+            {
+                CategoryId = product.CategoryId,
+                Gtin = product.Gtin,
+                Description = product.Description,
+                ModelName = product.Model,
+                Name = product.Name,
+                OldPrice = product.OldPrice,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                ShortDescription = product.Shortescription,
+                Specification = product.Specification,
+                SKU = product.SKU,
+                TrademarkId = product.TrademarkId,
+            };
+            return View(productViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductViewModel model, string id)
+        {
+            var category = _categoryService.ListAll();
+            var color = _colorService.ListAll();
+            var firm = _firmService.ListAll();
+            ViewData["Color"] = color;
+            ViewData["TrademarkId"] = firm;
+            ViewData["Category"] = category;
+            try
+            {
+                var product = await _productService.FindFirstOrDefault(id);
+                //MapUploadedFile(model);
+                if (ModelState.IsValid)
+                {
+                    await ReplaceImageAsync(model);
+                    var thumbnailUrl = await SaveThumbnail(model);
+                    var newProduct = new Product
+                    {
+                        Description = model.Description,
+                        CategoryId = model.CategoryId,
+                        Model = model.ModelName,
+                        Name = model.Name,
+                        Shortescription = model.ShortDescription,
+                        TrademarkId = model.TrademarkId,
+                        SKU = model.SKU,
+                        Specification = model.Specification,
+                        ImageThumbnail = thumbnailUrl,
+                        OldPrice = model.OldPrice,
+                        Quantity = model.Quantity,
+                        Price = model.Price,
+                        Gtin = model.Gtin,
+                        Id = product.Id
+                    };
+                    _productService.Update(newProduct);
+                    await SaveProductMedias(model, product, Constant.IMGPRODUCTROOT);
+                    _colorProductService.Update(new ColorProduct { ColorId = model.ColorId, ProductId = product.Id });
                     _unitOfWork.Commit();
                     return View();
                 }
@@ -129,22 +210,45 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
             foreach (var item in productVM.ProductImages)
             {
                 var fileName = await SaveFile(item, mediaFolder);
-                var image = new Image
+                if (fileName != null)
                 {
-                    Name = fileName,
-                    ProductId = product.Id,
-                    Url = Constant.IMGPRODUCT + fileName
-                };
-                _imageService.Insert(image);
+                    var image = new Image
+                    {
+                        Name = fileName,
+                        ProductId = product.Id,
+                        Url = Constant.IMGPRODUCT + fileName
+                    };
+                    _imageService.Insert(image);
+                }
+                else
+                {
+                    var image = new Image
+                    {
+                        Name = fileName,
+                        ProductId = product.Id,
+                        Url = null
+                    };
+                    _imageService.Insert(image);
+                }
             }
         }
+
         private async Task<string> SaveThumbnail(ProductViewModel productVM)
         {
             var productThumbnail = await SaveFile(productVM.ImageThumbnail, Constant.PRODUCTTHUMBNAILROOT);
+            if (productThumbnail == null)
+            {
+                return null;
+            }
             return Constant.IMAGETHUMBNAIL + productThumbnail;
         }
+
         private async Task<string> SaveFile(IFormFile file, string mediaFolder)
         {
+            if (file == null)
+            {
+                return null;
+            }
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}".Trim('"');
             string reversed = new String(fileName.ToCharArray().Reverse().ToArray());

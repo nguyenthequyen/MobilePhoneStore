@@ -7,5 +7,6 @@ namespace MobilePhoneStore.Services
 {
     public interface IColorProductService : IBaseService<ColorProduct>
     {
+        IEnumerable<ColorProduct> GetColorProductsByProductId(string productId);
     }
 }

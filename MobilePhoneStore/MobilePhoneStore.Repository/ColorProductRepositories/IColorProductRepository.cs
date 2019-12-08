@@ -7,5 +7,6 @@ namespace MobilePhoneStore.Repository
 {
     public interface IColorProductRepository : IBaseRepository<ColorProduct>
     {
+        IEnumerable<ColorProduct> GetColorProductsByProductId(string productId);
     }
 }

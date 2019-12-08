@@ -5,10 +5,9 @@
 }
 @using MobilePhoneStore.Models
 @{
-    var product = ViewData["Product"] as List<Product>;
+    var product = ViewData["Product"] as IEnumerable<Product>;
 }
 <div class="page-wrapper">
-    <img src="/product/img_product/9217c682-4caf-41d3-9081-6f2a3b662c7e.jpg" />
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
@@ -86,7 +85,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (product.Count <= 0)
+                            @if (product == null)
                             {
                                 <tr>
                                     <td colspan="9">Không có sản phẩm nào</td>
@@ -99,14 +98,14 @@
                                 {
                                     <tr>
                                         <th scope="row">@i</th>
-                                        <td><img src="@item.ImageThumbnail" /></td>
+                                        <td><img src="@item.ImageThumbnail" style="width:75px;height:75px;" /></td>
                                         <td>@item.Name</td>
                                         <td>@item.SKU</td>
                                         <th scope="col">@item.OldPrice</th>
                                         <th scope="col">@item.Price</th>
                                         <th scope="col">@item.Quantity</th>
                                         <th scope="col">@item.Model</th>
-                                        <th scope="col">Sửa</th>
+                                        <th scope="col"><a href="/Admin/Product/Edit?id=@item.Id" class="btn btn-sm btn-primary"><i class="mdi mdi-table-edit"></i> Sửa</a></th>
                                     </tr>
                                     i++;
                                 }

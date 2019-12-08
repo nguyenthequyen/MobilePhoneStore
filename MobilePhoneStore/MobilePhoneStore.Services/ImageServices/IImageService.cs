@@ -7,5 +7,6 @@ namespace MobilePhoneStore.Services
 {
     public interface IImageService : IBaseService<Image>
     {
+        public IEnumerable<Image> GetImages(string productId);
     }
 }

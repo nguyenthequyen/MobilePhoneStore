@@ -1,5 +1,4 @@
 ﻿using MobilePhoneStore.Models;
-using MobilePhoneStore.Models.Dtos;
 using MobilePhoneStore.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,11 +12,6 @@ namespace MobilePhoneStore.Services
         public ProductService(IUnitOfWork unitOfWork, IProductRepository repository) : base(unitOfWork, repository)
         {
             _repository = repository;
-        }
-
-        public IEnumerable<ProductQuery> GetProducts()
-        {
-            return _repository.GetProducts();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace MobilePhoneStore.Models
         public decimal? OldPrice { get; set; }
         public string ImageThumbnail { get; set; }
         public int Quantity { get; set; }
+        public string Gtin { get; set; }
         public Category Category { get; set; }
         public Trademark Trademark { get; set; }
     }

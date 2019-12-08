@@ -7,5 +7,6 @@ namespace MobilePhoneStore.Repository
 {
     public interface IColorRepository : IBaseRepository<Color>
     {
+        IEnumerable<Color> GetColorsByColorId(string id);
     }
 }

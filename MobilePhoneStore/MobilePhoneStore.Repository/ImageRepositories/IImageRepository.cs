@@ -7,5 +7,6 @@ namespace MobilePhoneStore.Repository
 {
     public interface IImageRepository : IBaseRepository<Image>
     {
+        public IEnumerable<Image> GetImages(string productId);
     }
 }

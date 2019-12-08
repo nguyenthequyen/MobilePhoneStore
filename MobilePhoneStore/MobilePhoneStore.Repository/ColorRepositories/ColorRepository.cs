@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Text;
 
 namespace MobilePhoneStore.Repository
@@ -11,6 +12,11 @@ namespace MobilePhoneStore.Repository
         public ColorRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public IEnumerable<Color> GetColorsByColorId(string id)
+        {
+            return _dbContext.Colors.Where(x => x.Id == id);
         }
     }
 }

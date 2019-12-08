@@ -26,7 +26,6 @@ namespace MobilePhoneStore.Web.Controllers
 
         public IActionResult Index()
         {
-            var product = _productService.GetProducts();
             return View();
         }
 
