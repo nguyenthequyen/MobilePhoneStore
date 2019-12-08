@@ -15,5 +15,6 @@ namespace MobilePhoneStore.Services
         void Update(TEntity entity);
         void Delete(TEntity entity);
         void Save();
+        IEnumerable<TEntity> ListEntityById(string id);
     }
 }

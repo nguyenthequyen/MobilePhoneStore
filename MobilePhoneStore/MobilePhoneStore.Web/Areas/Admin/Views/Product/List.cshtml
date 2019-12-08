@@ -86,7 +86,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @{
+                            @if (product.Count <= 0)
+                            {
+                                <tr>
+                                    <td colspan="9">Không có sản phẩm nào</td>
+                                </tr>
+                            }
+                            else
+                            {
                                 int i = 1;
                                 foreach (var item in product)
                                 {
@@ -104,26 +111,6 @@
                                     i++;
                                 }
                             }
-                            <tr>
-                                <th scope="row">2</th>
-                                <td><img src="~/img/about/About_icon1.png" /></td>
-                                <td>Thornton</td>
-                                <td>fat</td>
-                                <th scope="col">Price</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Danh mục</th>
-                                <th scope="col">Sửa</th>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td><img src="~/img/about/About_icon1.png" /></td>
-                                <td>the Bird</td>
-                                <td>twitter</td>
-                                <th scope="col">Price</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Danh mục</th>
-                                <th scope="col">Sửa</th>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

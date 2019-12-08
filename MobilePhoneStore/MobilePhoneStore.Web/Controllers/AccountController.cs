@@ -21,7 +21,8 @@ namespace MobilePhoneStore.Web.Controllers
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ApplicationDbContext dbContext,
-            ILogger<BaseMVCController> logger) : base(dbContext, logger)
+            IUnitOfWork unitOfWork,
+            ILogger<BaseMVCController> logger) : base(unitOfWork, dbContext, logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;

@@ -20,7 +20,7 @@ namespace MobilePhoneStore.Models.ViewModels
         [Display(Name = "Mô tả ngắn")]
         public string ShortDescription { get; set; }
 
-        //[Required(ErrorMessage = "Mô tả không được để trống")]
+        [Required(ErrorMessage = "Mô tả không được để trống")]
         [Display(Name = "Mô tả")]
         public string Description { get; set; }
 
@@ -43,8 +43,8 @@ namespace MobilePhoneStore.Models.ViewModels
 
         public string CategoryId { get; set; }
 
-        [Display(Name = "Model")]
-        public string Model { get; set; }
+        [Display(Name = "ModelName")]
+        public string ModelName { get; set; }
 
         [Display(Name = "Thông số kỹ thuật")]
         public string Specification { get; set; }

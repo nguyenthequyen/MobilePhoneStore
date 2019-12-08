@@ -14,7 +14,6 @@ namespace MobilePhoneStore.Web.Controllers
     {
 
         private readonly IProductService _productService;
-
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(
@@ -27,6 +26,7 @@ namespace MobilePhoneStore.Web.Controllers
 
         public IActionResult Index()
         {
+            var product = _productService.GetProducts();
             return View();
         }
 

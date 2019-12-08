@@ -43,5 +43,10 @@ namespace MobilePhoneStore.Repository
         {
             _dbContext.Set<TEntity>().Update(entity);
         }
+
+        public IEnumerable<TEntity> ListEntityById(string id)
+        {
+            return _dbContext.Set<TEntity>().Where(x => x.Id == id);
+        }
     }
 }

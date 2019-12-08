@@ -23,15 +23,21 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label asp-for="Quantity" class="col-sm-3 text-right control-label col-form-label"></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" asp-for="Quantity">
+                </div>
+            </div>
+            <div class="form-group row">
                 <label asp-for="SKU" class="col-sm-3 text-right control-label col-form-label"></label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" asp-for="SKU">
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="Model" class="col-sm-3 text-right control-label col-form-label"></label>
+                <label asp-for="ModelName" class="col-sm-3 text-right control-label col-form-label"></label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" asp-for="Model">
+                    <input type="text" class="form-control" asp-for="ModelName">
                 </div>
             </div>
             <div class="form-group row">
@@ -109,8 +115,6 @@
             </div>
         </div>
     </form>
-    <!-- End footer -->
-    <!-- ============================================================== -->
 </div>
 @section scripts{
     <script>

@@ -49,5 +49,10 @@ namespace MobilePhoneStore.Services
         {
             _reponsitory.Update(entity);
         }
+
+        public IEnumerable<TEntity> ListEntityById(string id)
+        {
+            return _reponsitory.ListEntityById(id);
+        }
     }
 }

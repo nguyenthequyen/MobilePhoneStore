@@ -12,12 +12,15 @@ namespace MobilePhoneStore.Web.Controllers
     {
         protected readonly ILogger<BaseMVCController> _logger;
         protected readonly ApplicationDbContext _dbContext;
+        protected readonly IUnitOfWork _unitOfWork;
         public BaseMVCController(
+            IUnitOfWork unitOfWork,
             ApplicationDbContext dbContext,
             ILogger<BaseMVCController> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
     }
 }

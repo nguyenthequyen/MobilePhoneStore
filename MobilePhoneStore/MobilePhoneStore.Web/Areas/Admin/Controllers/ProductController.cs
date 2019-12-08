@@ -28,10 +28,8 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
         private readonly IFirmService _firmService;
         private readonly ICategoryService _categoryService;
         private readonly IColorProductService _colorProductService;
-        [Obsolete]
         private readonly IHostingEnvironment _env;
 
-        [Obsolete]
         public ProductController(
             IColorProductService colorProductService,
             IHostingEnvironment env,
@@ -55,7 +53,7 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
             _colorProductService = colorProductService;
         }
 
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
             var product = _productService.ListAll();
             ViewData["Product"] = product;
@@ -73,7 +71,6 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
             ViewData["Category"] = category;
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Create(ProductViewModel model)
         {
@@ -94,7 +91,7 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
                     {
                         Description = model.Description,
                         CategoryId = model.CategoryId,
-                        Model = model.Model,
+                        Model = model.ModelName,
                         Name = model.Name,
                         Shortescription = model.ShortDescription,
                         TrademarkId = model.TrademarkId,
