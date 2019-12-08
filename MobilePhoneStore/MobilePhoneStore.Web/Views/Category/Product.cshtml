@@ -3,7 +3,7 @@
 }
 @using MobilePhoneStore.Models
 @{
-    var product = ViewData["Product"] as IEnumerable<Product>;
+    var product = ViewData["Product"]as List<Product>;
 }
 <section class="product_area mb-46 pt-3">
     <div class="container">
@@ -16,7 +16,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" ><img src="@item.ImageThumbnail" style="height:260px; width:260px;" alt=""></a>
+                                    <a class="primary_img" asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id"><img src="@item.ImageThumbnail" style="height:260px; width:260px;" alt=""></a>
                                     <div class="action_links">
                                         <ul>
                                             <li class="wishlist"><a href="wishlist.html" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
