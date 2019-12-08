@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MobilePhoneStore.Repository.Data.Migrations
+namespace MobilePhoneStore.Repository.Migrations
 {
     public partial class InitProject : Migration
     {
@@ -285,7 +285,8 @@ namespace MobilePhoneStore.Repository.Data.Migrations
                     Price = table.Column<decimal>(nullable: false),
                     OldPrice = table.Column<decimal>(nullable: true),
                     ImageThumbnail = table.Column<string>(nullable: true),
-                    Quantity = table.Column<int>(nullable: false)
+                    Quantity = table.Column<int>(nullable: false),
+                    Gtin = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

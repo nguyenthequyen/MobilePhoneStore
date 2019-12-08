@@ -210,45 +210,24 @@ namespace MobilePhoneStore.Web.Areas.Admin.Controllers
             foreach (var item in productVM.ProductImages)
             {
                 var fileName = await SaveFile(item, mediaFolder);
-                if (fileName != null)
+                var image = new Image
                 {
-                    var image = new Image
-                    {
-                        Name = fileName,
-                        ProductId = product.Id,
-                        Url = Constant.IMGPRODUCT + fileName
-                    };
-                    _imageService.Insert(image);
-                }
-                else
-                {
-                    var image = new Image
-                    {
-                        Name = fileName,
-                        ProductId = product.Id,
-                        Url = null
-                    };
-                    _imageService.Insert(image);
-                }
+                    Name = fileName,
+                    ProductId = product.Id,
+                    Url = Constant.IMGPRODUCT + fileName
+                };
+                _imageService.Insert(image);
             }
         }
 
         private async Task<string> SaveThumbnail(ProductViewModel productVM)
         {
             var productThumbnail = await SaveFile(productVM.ImageThumbnail, Constant.PRODUCTTHUMBNAILROOT);
-            if (productThumbnail == null)
-            {
-                return null;
-            }
             return Constant.IMAGETHUMBNAIL + productThumbnail;
         }
 
         private async Task<string> SaveFile(IFormFile file, string mediaFolder)
         {
-            if (file == null)
-            {
-                return null;
-            }
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}".Trim('"');
             string reversed = new String(fileName.ToCharArray().Reverse().ToArray());

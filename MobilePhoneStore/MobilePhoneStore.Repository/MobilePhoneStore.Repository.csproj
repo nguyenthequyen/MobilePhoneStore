@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20191207133852_InitProject.cs" />
     <Compile Remove="Data\Migrations\20191207133852_InitProject.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191207170752_InitProject.cs" />
+    <Compile Remove="Data\Migrations\20191207170752_InitProject.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +20,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MobilePhoneStore.Models\MobilePhoneStore.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>
