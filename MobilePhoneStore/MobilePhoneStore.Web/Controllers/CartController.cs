@@ -14,13 +14,16 @@ namespace MobilePhoneStore.Web.Controllers
     public class CartController : BaseMVCController
     {
         private readonly ICategoryService _categoryService;
+        private readonly IFirmService _firmService;
         public CartController(
+            IFirmService firmService,
             ICategoryService categoryService,
             IUnitOfWork unitOfWork,
             ApplicationDbContext dbContext,
             ILogger<CartController> logger) : base(unitOfWork, dbContext, logger)
         {
             _categoryService = categoryService;
+            _firmService = firmService;
         }
 
         public IActionResult Index()
@@ -37,6 +40,8 @@ namespace MobilePhoneStore.Web.Controllers
             }
             var category = _categoryService.ListAll();
             ViewData["Category"] = category;
+            var firm = _firmService.ListAll();
+            ViewData["Firm"] = firm;
             return View();
         }
 
@@ -56,6 +61,8 @@ namespace MobilePhoneStore.Web.Controllers
                 ViewData["Total"] = cartAfter.Sum(item => item.Product.Price * item.Quantity);
                 ViewData["Cart"] = cartAfter;
             }
+            var firm = _firmService.ListAll();
+            ViewData["Firm"] = firm;
             var category = _categoryService.ListAll();
             ViewData["Category"] = category;
             return RedirectToAction(nameof(ListCart));

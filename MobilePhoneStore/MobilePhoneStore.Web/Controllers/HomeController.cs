@@ -11,32 +11,34 @@ using MobilePhoneStore.Web.Models;
 
 namespace MobilePhoneStore.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseMVCController
     {
 
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
-        private readonly ApplicationDbContext _dbContext;
-        private readonly ILogger<HomeController> _logger;
+        private readonly IFirmService _firmService;
 
         public HomeController(
-            ApplicationDbContext dbContext,
             ICategoryService categoryService,
             IProductService productService,
-            ILogger<HomeController> logger)
+            IUnitOfWork unitOfWork,
+            IFirmService firmService,
+            ApplicationDbContext dbContext,
+            ILogger<BaseMVCController> logger) : base(unitOfWork, dbContext, logger)
         {
             _categoryService = categoryService;
             _productService = productService;
-            _logger = logger;
-            _dbContext = dbContext;
+            _firmService = firmService;
         }
 
         public IActionResult Index()
         {
+            var firm = _firmService.ListAll();
             var category = _categoryService.ListAll();
             var product = _productService.ListAll();
             ViewData["Product"] = product;
             ViewData["Category"] = category;
+            ViewData["Firm"] = firm;
             return View();
         }
 
