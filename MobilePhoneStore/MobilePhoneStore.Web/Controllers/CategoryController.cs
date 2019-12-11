@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MobilePhoneStore.Models;
 using MobilePhoneStore.Repository;
+using MobilePhoneStore.Services;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,8 +14,14 @@ namespace MobilePhoneStore.Web.Controllers
 {
     public class CategoryController : BaseMVCController
     {
-        public CategoryController(IUnitOfWork unitOfWork, ApplicationDbContext dbContext, ILogger<BaseMVCController> logger) : base(unitOfWork, dbContext, logger)
+        private readonly ICategoryService _categoryService;
+        public CategoryController(
+            ICategoryService categoryService,
+            IUnitOfWork unitOfWork, 
+            ApplicationDbContext dbContext, 
+            ILogger<CategoryController> logger) : base(unitOfWork, dbContext, logger)
         {
+            _categoryService = categoryService;
         }
 
         // GET: /<controller>/
@@ -25,11 +32,9 @@ namespace MobilePhoneStore.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Product(string id)
         {
-            var product = _dbContext.Categories.Where(x => x.Id == id).Join(_dbContext.Products, x => x.Id, y => y.CategoryId, (x, y) => new { x, y }).Select(x => new
-            {
-                Product = x.y
-            }).ToList();
-
+            var product = _dbContext.Products.Where(x => x.CategoryId == id).ToList();
+            var category = _categoryService.ListAll();
+            ViewData["Category"] = category;
             ViewData["Product"] = product;
             return View();
         }

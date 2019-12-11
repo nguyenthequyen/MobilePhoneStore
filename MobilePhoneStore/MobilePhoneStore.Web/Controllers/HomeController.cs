@@ -33,8 +33,10 @@ namespace MobilePhoneStore.Web.Controllers
 
         public IActionResult Index()
         {
+            var category = _categoryService.ListAll();
             var product = _productService.ListAll();
             ViewData["Product"] = product;
+            ViewData["Category"] = category;
             return View();
         }
 
