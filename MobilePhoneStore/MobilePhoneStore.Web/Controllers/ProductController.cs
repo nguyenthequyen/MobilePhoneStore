@@ -19,8 +19,9 @@ namespace MobilePhoneStore.Web.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IImageService _imageService;
-
+        private readonly IFirmService _firmService;
         public ProductController(
+            IFirmService firmService,
             IImageService imageService,
             ICategoryService categoryService,
             IProductService productService,
@@ -31,6 +32,7 @@ namespace MobilePhoneStore.Web.Controllers
             _imageService = imageService;
             _productService = productService;
             _categoryService = categoryService;
+            _firmService = firmService;
         }
 
         // GET: /<controller>/
@@ -55,6 +57,8 @@ namespace MobilePhoneStore.Web.Controllers
             ViewData["Images"] = images;
             var category = _categoryService.ListAll();
             ViewData["Category"] = category;
+            var firm = _firmService.ListAll();
+            ViewData["Firm"] = firm;
             return View(product);
         }
         [HttpPost]
@@ -67,6 +71,8 @@ namespace MobilePhoneStore.Web.Controllers
             ViewData["Images"] = images;
             var category = _categoryService.ListAll();
             ViewData["Category"] = category;
+            var firm = _firmService.ListAll();
+            ViewData["Firm"] = firm;
             if (product.Quantity < model.Quantity)
             {
                 var cartAfter = SessionHelper.GetObjectFromJson<List<Cart>>(HttpContext.Session, "cart");
@@ -89,7 +95,7 @@ namespace MobilePhoneStore.Web.Controllers
                 int index = isExist(model.ProductId);
                 if (index != -1)
                 {
-                    cart[index].Quantity = cart[index].Quantity + model.Quantity;
+                    cart[index].Quantity = model.Quantity;
                 }
                 else
                 {

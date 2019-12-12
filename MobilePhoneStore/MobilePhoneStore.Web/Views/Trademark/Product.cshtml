@@ -7,38 +7,37 @@
 }
 <section class="product_area mb-46 pt-3">
     <div class="container">
-
         <div class="product_carousel owl-carousel owl-loaded owl-drag">
             <div class="owl-stage-outer">
                 @if (product != null)
                 {
                     foreach (var item in product)
                     {
-                <div class="owl-item active" style="width: 260px; margin-right: 20px;">
-                    <article class="single_product">
-                        <figure>
-                            <div class="product_thumb">
-                                <a class="primary_img" asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id"><img src="@item.ImageThumbnail" style="height:260px; width:260px;" alt=""></a>
-                                <div class="action_links">
-                                    <ul>
-                                        <li class="wishlist"><a href="wishlist.html" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                                        <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="" data-original-title="quick view"> <span class="ion-ios-search-strong"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="add_to_cart">
-                                    <a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" title="" data-original-title="Mua ngay">Mua ngay</a>
-                                </div>
-                            </div>
-                            <figcaption class="product_content">
-                                <div class="price_box">
-                                    <span class="old_price">@item.OldPrice</span>
-                                    <span class="current_price">@item.Price</span>
-                                </div>
-                                <h3 class="product_name"><a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id">@item.Name</a></h3>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
+                        <div class="owl-item active" style="width: 260px; margin-right: 20px;">
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id"><img src="@item.ImageThumbnail" style="height:260px; width:260px;" alt=""></a>
+                                        <div class="action_links">
+                                            <ul>
+                                                <li class="wishlist"><a href="wishlist.html" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                                <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="" data-original-title="quick view"> <span class="ion-ios-search-strong"></span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="add_to_cart">
+                                            <a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" title="" data-original-title="Mua ngay">Mua ngay</a>
+                                        </div>
+                                    </div>
+                                    <figcaption class="product_content">
+                                        <div class="price_box">
+                                            <span class="old_price">@item.OldPrice</span>
+                                            <span class="current_price">@item.Price</span>
+                                        </div>
+                                        <h3 class="product_name"><a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id">@item.Name</a></h3>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        </div>
                     }
                 }
             </div>
