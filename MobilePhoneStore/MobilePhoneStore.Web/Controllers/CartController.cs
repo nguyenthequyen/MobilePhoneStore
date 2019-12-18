@@ -68,6 +68,12 @@ namespace MobilePhoneStore.Web.Controllers
             return RedirectToAction(nameof(ListCart));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> BuyProduct()
+        {
+            return View();
+        }
+
         private int isExist(string id)
         {
             List<Cart> cart = SessionHelper.GetObjectFromJson<List<Cart>>(HttpContext.Session, "cart");
